@@ -4477,7 +4477,8 @@ __webpack_require__.r(__webpack_exports__);
 var forms = function forms() {
   var form = document.querySelectorAll('form'),
       inputs = document.querySelectorAll('input'),
-      upload = document.querySelectorAll('[name="upload"]');
+      upload = document.querySelectorAll('[name="upload"]'),
+      calcPrice = document.querySelector('.calc-price');
   var message = {
     loading: 'Загрузка...',
     success: 'Спасибо! Скоро мы с вами свяжемся',
@@ -4527,10 +4528,19 @@ var forms = function forms() {
       var textMessage = document.createElement('div');
       textMessage.textContent = message.loading;
       statusMessage.appendChild(textMessage);
-      var formData = new FormData(item);
       var api;
       item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-      console.log(api);
+      var formData = new FormData(item);
+      var calcPriceFull = calcPrice.textContent;
+      formData.append('price', calcPriceFull);
+      /* console.log(calcPriceFull); */
+
+      /* const json = JSON.stringify(Object.fromEntries(formData.entries())); */
+
+      /* console.log(json); */
+
+      /* postData('http://localhost:3000', json) */
+
       Object(_services_requests__WEBPACK_IMPORTED_MODULE_6__["postData"])(api, formData).then(function (res) {
         console.log(res);
         statusImg.setAttribute('src', message.ok);
