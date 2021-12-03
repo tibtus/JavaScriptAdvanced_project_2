@@ -4455,19 +4455,24 @@ __webpack_require__.r(__webpack_exports__);
 
 var accordion = function accordion(triggersSelector) {
   var btns = document.querySelectorAll(triggersSelector);
-  btns.forEach(function (btn) {
-    btn.classList.remove('active-style');
-    btn.nextElementSibling.classList.remove('active-content');
-    btn.addEventListener('click', function () {
-      /* this.classList.toggle('active-style'); */
 
-      /* this.nextElementSibling.classList.toggle('active-content'); */
-      if (this.classList.contains('active-style')) {
-        this.classList.remove('active-style');
-        this.nextElementSibling.classList.remove('active-content');
-      } else {
+  var deactiveBtnStyle = function deactiveBtnStyle(btns) {
+    btns.forEach(function (item) {
+      item.classList.remove('active-style');
+      item.nextElementSibling.classList.remove('active-content');
+      item.nextElementSibling.style.maxHeight = '0px';
+    });
+  };
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!this.classList.contains('active-style')) {
+        deactiveBtnStyle(btns);
         this.classList.add('active-style');
         this.nextElementSibling.classList.add('active-content');
+      } else {
+        this.classList.remove('active-style');
+        this.nextElementSibling.classList.remove('active-content');
       }
 
       if (this.classList.contains('active-style')) {

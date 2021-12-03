@@ -1,22 +1,26 @@
 const accordion = (triggersSelector) => {
     const btns = document.querySelectorAll(triggersSelector);
 
-    btns.forEach(btn => {
-        btn.classList.remove('active-style');
-        btn.nextElementSibling.classList.remove('active-content');
-        btn.addEventListener('click', function() {
-            /* this.classList.toggle('active-style'); */
-            /* this.nextElementSibling.classList.toggle('active-content'); */
-            
+    const deactiveBtnStyle = function (btns) {
+        btns.forEach(item => {
+            item.classList.remove('active-style');
+            item.nextElementSibling.classList.remove('active-content'); 
+            item.nextElementSibling.style.maxHeight = '0px';
+        });
+    };
 
-            if(this.classList.contains('active-style')){  
-                   
-                this.classList.remove('active-style');
-                this.nextElementSibling.classList.remove('active-content');     
-               
-            } else {
+    btns.forEach(btn => { 
+        btn.addEventListener('click', function() {
+        
+         
+            if(!this.classList.contains('active-style')){  
+                deactiveBtnStyle(btns);
                 this.classList.add('active-style');
-                this.nextElementSibling.classList.add('active-content');
+                this.nextElementSibling.classList.add('active-content');     
+               
+            } else {                
+                this.classList.remove('active-style');
+                this.nextElementSibling.classList.remove('active-content');
             }
             
 

@@ -908,9 +908,9 @@ h4 {
     text-decoration: none;
     border: 0;
 }
-.often-questions .accordion-heading.active+.accordion-block {
+/* .often-questions .accordion-heading.active+.accordion-block {
     display: block;
-}
+} */
 .often-questions .accordion-block {
   background-color: #f7e7e6;
   max-height: 0;
@@ -922,6 +922,7 @@ h4 {
   /* padding: 3rem 4rem; */
 }
 .often-questions .accordion-block.active-content {
+   /*  display: block; */
     overflow: visible;
     opacity: 1;
     padding: 3rem 4rem;
